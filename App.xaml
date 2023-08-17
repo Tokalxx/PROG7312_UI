@@ -1,0 +1,23 @@
+﻿<Application x:Class="PROG7312_UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PROG7312_UI"
+             xmlns:viewModel="clr-namespace:PROG7312_UI.MVVM.View_Model"
+             xmlns:view="clr-namespace:PROG7312_UI.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/StandardTextBlockTheme.xaml"/>
+                <ResourceDictionary Source="Themes/StandardTextBoxTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewModel:RBViewModel}">
+                <view:ReplacingBooksView/>
+            </DataTemplate>
+        </ResourceDictionary>
+
+        
+
+    </Application.Resources>
+</Application>
