@@ -1,14 +1,20 @@
 ﻿using PROG7312_UI.MVVM.View_Model.ItemViewModel;
 using System.Windows;
+using System.Windows.Controls;
 
-namespace PROG7312_UI
+namespace PROG7312_UI.MVVM.View.ItemView
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Interaction logic for ItemView.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class ItemView : UserControl
     {
-        protected override void OnStartup(StartupEventArgs e)
+        public ItemView()
+        {
+            InitializeComponent();
+        }
+
+        private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             ItemListingViewModel inProgressTodoItemListingViewModel = new ItemListingViewModel();
             inProgressTodoItemListingViewModel.AddItem(new ItemViewModel("Emyia"));
@@ -25,13 +31,16 @@ namespace PROG7312_UI
 
             MoveItemViewModel todoViewModel = new MoveItemViewModel(inProgressTodoItemListingViewModel, completedTodoItemListingViewModel);
 
-            MainWindow = new MainWindow()
+            ReplacingBooksView rbv = new ReplacingBooksView()
             {
                 DataContext = todoViewModel
             };
-            MainWindow.Show();
+        }
 
-            base.OnStartup(e);
+        private void buttonOrder_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("order");
+
         }
     }
 }

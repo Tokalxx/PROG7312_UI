@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG7312_UI"
         xmlns:viewModel="clr-namespace:PROG7312_UI.MVVM.View_Model"
+        xmlns:view="clr-namespace:PROG7312_UI.MVVM.View"
         mc:Ignorable="d"
         Height="800" Width="1000"
         ResizeMode="NoResize"
@@ -14,7 +15,7 @@
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
-    <Border Background="#000123">
+    <Border Background="#2374">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
@@ -45,18 +46,25 @@
                              Height="50"
                              Foreground="White"
                              FontSize="17"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}" 
+                             IsEnabled="False"/>
                 <RadioButton Content="Finding Call Numbers"
                              Height="50"
                              Foreground="White"
                              FontSize="17"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsEnabled="False"/>
                 
             </StackPanel>
             <StackPanel Background="LightBlue"
                         Grid.Row="1">
                 
             </StackPanel>
+
+            <!--<StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                <view:ReplacingBooksView/>
+            </StackPanel>-->
 
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
