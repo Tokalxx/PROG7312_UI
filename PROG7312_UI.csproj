@@ -69,7 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Achievements.cs" />
+    <Compile Include="Core\Acheivements.cs" />
     <Compile Include="Core\CommandBase.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\ProgressReport.cs" />

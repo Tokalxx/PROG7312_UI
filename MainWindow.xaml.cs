@@ -9,6 +9,7 @@ namespace PROG7312_UI
     public partial class MainWindow : Window
     {
         ProgressReport rp = ProgressReport.GetProgressReport();
+        Acheivements ach = Acheivements.GetAcheivements();
 
         public MainWindow()
         {
@@ -21,6 +22,11 @@ namespace PROG7312_UI
             {
                 MessageBox.Show($"{x.reprotID}{x.endTime}{x.userScore}");
             }
+        }
+
+        private void buttonAcheivement_Click(object sender, RoutedEventArgs e)
+        {
+            ach.checkForAcheievements(rp.GetReprot());
         }
     }
 }

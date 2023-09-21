@@ -65,6 +65,9 @@
                 <Button x:Name="buttonReport" Click="buttonReport_Click"> 
                     Report
                 </Button>
+                <Button x:Name="buttonAcheivement" Click="buttonAcheivement_Click">
+                    Acheivements
+                </Button>
             </StackPanel>
 
             <StackPanel
