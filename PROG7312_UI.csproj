@@ -69,10 +69,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Commands\ItemReceivedCommand.cs" />
-    <Compile Include="Commands\ItemRemovedCommand.cs" />
+    <Compile Include="Core\Achievements.cs" />
     <Compile Include="Core\CommandBase.cs" />
     <Compile Include="Core\ObservableObject.cs" />
+    <Compile Include="Core\ProgressReport.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -84,14 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\IdentifyAreaView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVVM\View\ItemView\ItemListingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVVM\View\ItemView\ItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,9 +107,6 @@
   <ItemGroup>
     <Compile Include="MVVM\View Model\FCNViewModel.cs" />
     <Compile Include="MVVM\View Model\IAViewModel.cs" />
-    <Compile Include="MVVM\View Model\ItemViewModel\ItemListingViewModel.cs" />
-    <Compile Include="MVVM\View Model\ItemViewModel\ItemViewModel.cs" />
-    <Compile Include="MVVM\View Model\ItemViewModel\MoveItemViewModel.cs" />
     <Compile Include="MVVM\View Model\MainViewModel.cs" />
     <Compile Include="MVVM\View Model\RBViewModel.cs" />
     <Compile Include="MVVM\View\FindingCallNumbersView.xaml.cs">
@@ -125,12 +114,6 @@
     </Compile>
     <Compile Include="MVVM\View\IdentifyAreaView.xaml.cs">
       <DependentUpon>IdentifyAreaView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\View\ItemView\ItemListingView.xaml.cs">
-      <DependentUpon>ItemListingView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\View\ItemView\ItemView.xaml.cs">
-      <DependentUpon>ItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ReplacingBooksView.xaml.cs">
       <DependentUpon>ReplacingBooksView.xaml</DependentUpon>
@@ -162,6 +145,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Commands\" />
     <Folder Include="Fonts\" />
     <Folder Include="Images\" />
     <Folder Include="MVVM\Model\" />
