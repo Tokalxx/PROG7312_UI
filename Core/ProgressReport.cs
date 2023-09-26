@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace PROG7312_UI.Core
 {
     public class ProgressReport
     {
         private static readonly ProgressReport _instance = new ProgressReport();
-        private List<ReportModel> reprot = new List<ReportModel>();
+        private ObservableCollection<ReportModel> reprot = new ObservableCollection<ReportModel>();
 
         private ProgressReport()
         {
@@ -19,13 +18,13 @@ namespace PROG7312_UI.Core
         }
 
         //Might need to add more so that the reprot ids are not the same
-        public void GenerateReport(int id, TimeSpan time, string score)
+        public void GenerateReport(int id, double time, bool status, int score)
         {
             string reprotId = "RP." + id.ToString();
-            reprot.Add(new ReportModel(reprotId, time, score));
+            reprot.Add(new ReportModel(reprotId, time, status, score));
         }
 
-        public List<ReportModel> GetReprot()
+        public ObservableCollection<ReportModel> GetReprot()
         {
             return reprot;
         }
@@ -34,13 +33,15 @@ namespace PROG7312_UI.Core
     public class ReportModel
     {
         public string reprotID { get; set; }
-        public TimeSpan endTime { get; set; }
-        public string userScore { get; set; }
+        public double endTime { get; set; }
+        public bool attemptStatus { get; set; }
+        public int userScore { get; set; }
 
-        public ReportModel(string id, TimeSpan time, string score)
+        public ReportModel(string id, double time, bool status, int score)
         {
             reprotID = id;
             endTime = time;
+            attemptStatus = status;
             userScore = score;
         }
     }

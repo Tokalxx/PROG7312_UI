@@ -16,6 +16,9 @@
             <DataTemplate DataType="{x:Type viewModel:RBViewModel}">
                 <view:ReplacingBooksView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
+                <view:HelpView />
+            </DataTemplate>
         </ResourceDictionary>
 
 

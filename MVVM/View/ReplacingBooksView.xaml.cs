@@ -18,16 +18,21 @@ namespace PROG7312_UI.MVVM.View
         private ObservableCollection<string> unorderedBooks = new ObservableCollection<string>();
         private ObservableCollection<string> orderedBooks = new ObservableCollection<string>();
         private ObservableCollection<string> correctOrder = new ObservableCollection<string>();
+        ProgressReport rp = ProgressReport.GetProgressReport();
+        Acheivements ach = Acheivements.GetAcheivements();
 
 
         public ReplacingBooksView()
         {
             InitializeComponent();
 
+
             unorderedView.ItemsSource = unorderedBooks;
             orderedView.ItemsSource = orderedBooks;
             unorderedView.MouseDoubleClick += UnorderedView_MouseDoubleClick;
             orderedView.MouseDoubleClick += OrderedView_MouseDoubleClick;
+            ReportsListView.ItemsSource = rp.GetReprot();
+            AcheivementsView.ItemsSource = ach.GetAcheivementsList();
         }
 
         private void UnorderedView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -50,6 +55,20 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
+        private void AcheivementsView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (AcheivementsView.SelectedItem != null)
+            {
+                // Cast the selected item to your data type (AcheivementModels)
+                AcheivementModels selectedItem = AcheivementsView.SelectedItem as AcheivementModels;
+
+                if (selectedItem != null)
+                {
+                    MessageBox.Show($"Achievement Description: \n{selectedItem.AcheiveDescrip}");
+                }
+            }
+        }
+
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             unorderedBooks.Clear();
@@ -67,14 +86,21 @@ namespace PROG7312_UI.MVVM.View
                 }
             }
 
+
+            buttonGenerate.IsEnabled = false;
+            buttonCheck.IsEnabled = true;
         }
 
 
         private void buttonCheck_Click(object sender, RoutedEventArgs e)
         {
-            bool check = true;
+            int scoreCounter = 0;
             correctOrder = new ObservableCollection<string>(orderedBooks);
+            int reportID = pr.GetReprot().Count;
 
+
+            TimeSpan eTime = DateTime.Now - generateStart;
+            double eSeconds = Math.Round(eTime.TotalSeconds, 2);
 
             for (int i = 0; i < correctOrder.Count; i++)
             {
@@ -89,27 +115,33 @@ namespace PROG7312_UI.MVVM.View
                 }
             }
 
-
+            //Gets the score of the user.
             for (int i = 0; i < orderedBooks.Count; i++)
             {
-                if (orderedBooks[i] != correctOrder[i] || orderedBooks.Count < 10)
+
+                if (orderedBooks[i] == correctOrder[i])
                 {
-                    MessageBox.Show("Order is not correct!");
-                    TimeSpan eTime = DateTime.Now - generateStart;
-                    pr.GenerateReport(1, eTime, "fail");
-                    check = false;
-                    return;
+                    scoreCounter++;
                 }
             }
 
-
-
-            if (check == true)
+            //Generates the report for the user.
+            if (scoreCounter == 10)
             {
-                TimeSpan eTime = DateTime.Now - generateStart;
-                pr.GenerateReport(2, eTime, "pass");
+                pr.GenerateReport(reportID + 1, eSeconds, true, scoreCounter);
+                ach.checkForAcheievements(pr.GetReprot());
+
+            }
+            else
+            {
+                pr.GenerateReport(reportID + 1, eSeconds, false, scoreCounter);
+                ach.checkForAcheievements(pr.GetReprot());
             }
 
+            unorderedBooks.Clear();
+            orderedBooks.Clear();
+            buttonCheck.IsEnabled = false;
+            buttonGenerate.IsEnabled = true;
         }
 
 

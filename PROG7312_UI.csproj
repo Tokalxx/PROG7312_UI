@@ -55,6 +55,9 @@
     <Reference Include="Wpf.Ui, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\WPF-UI.2.1.0\lib\net472\Wpf.Ui.dll</HintPath>
     </Reference>
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -74,12 +77,17 @@
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\ProgressReport.cs" />
     <Compile Include="Core\RelayCommand.cs" />
+    <Compile Include="Core\UserHelp.cs" />
     <Compile Include="Core\ViewModelBase.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MVVM\View\FindingCallNumbersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\HelpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,11 +114,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\View Model\FCNViewModel.cs" />
+    <Compile Include="MVVM\View Model\HelpViewModel.cs" />
     <Compile Include="MVVM\View Model\IAViewModel.cs" />
     <Compile Include="MVVM\View Model\MainViewModel.cs" />
     <Compile Include="MVVM\View Model\RBViewModel.cs" />
     <Compile Include="MVVM\View\FindingCallNumbersView.xaml.cs">
       <DependentUpon>FindingCallNumbersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\HelpView.xaml.cs">
+      <DependentUpon>HelpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\IdentifyAreaView.xaml.cs">
       <DependentUpon>IdentifyAreaView.xaml</DependentUpon>
@@ -147,8 +159,15 @@
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Fonts\" />
-    <Folder Include="Images\" />
     <Folder Include="MVVM\Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\0.PNG" />
+    <Resource Include="Images\1.PNG" />
+    <Resource Include="Images\2.PNG" />
+    <Resource Include="Images\3.PNG" />
+    <Resource Include="Images\4.PNG" />
+    <Resource Include="Images\5.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
