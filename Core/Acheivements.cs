@@ -9,7 +9,6 @@ namespace PROG7312_UI.Core
     {
         private static readonly Acheivements _instance = new Acheivements();
         TimeSpan timeCheckAcheivement1 = TimeSpan.FromSeconds(55);
-        int num = 0;
         private ObservableCollection<AcheivementModels> acheivements = new ObservableCollection<AcheivementModels>();
 
         private Acheivements()
@@ -32,17 +31,18 @@ namespace PROG7312_UI.Core
         public void checkForAcheievements(ObservableCollection<ReportModel> list)
         {
 
-            if (checkAcheivement1(list))
+
+            if (acheivements[0].LockStatus.ToLower() == "locked" && checkAcheivement1(list))
             {
                 MessageBox.Show("Acheivement 1 Unlocked");
             }
 
-            if (checkAcheivement2(list))
+            if (acheivements[1].LockStatus.ToLower() == "locked" && checkAcheivement2(list))
             {
                 MessageBox.Show("Acheivement 2 Unlocked");
 
             }
-            if (checkAcheivement3(list))
+            if (acheivements[2].LockStatus.ToLower() == "locked" && checkAcheivement3(list))
             {
                 MessageBox.Show("Acheivement 3 Unlocked");
 
@@ -65,6 +65,7 @@ namespace PROG7312_UI.Core
 
         public bool checkAcheivement2(ObservableCollection<ReportModel> list)
         {
+            int num = 0;
 
             foreach (ReportModel x in list)
             {
@@ -74,7 +75,7 @@ namespace PROG7312_UI.Core
                 }
             }
 
-            if (num >= 1)
+            if (num >= 5)
             {
                 acheivements[1].LockStatus = "Unlocked";
                 return true;
@@ -84,11 +85,28 @@ namespace PROG7312_UI.Core
 
         public bool checkAcheivement3(ObservableCollection<ReportModel> list)
         {
+            int num = 0;
+
+            foreach (ReportModel x in list)
+            {
+                if (x.attemptStatus)
+                {
+                    num++;
+                }
+                else
+                {
+                    num = 0;
+                }
+            }
 
             if (num >= 3)
             {
                 acheivements[2].LockStatus = "Unlocked";
                 return true;
+            }
+            else
+            {
+                num = 0;
             }
 
             return false;

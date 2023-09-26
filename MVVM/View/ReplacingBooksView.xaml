@@ -21,10 +21,24 @@
             Height="450"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
+
+            <Border
+                Width="100"
+                Height="40"
+                Background="Gray"
+                BorderThickness="3"
+                CornerRadius="20">
+                <TextBlock
+                    x:Name="stopwatchTextBlock"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    Foreground="White" />
+            </Border>
             <StackPanel
                 Width="200"
                 Height="350"
-                Margin="150,0,110,0">
+                Margin="70,0,110,0">
                 <ListView
                     x:Name="unorderedView"
                     Grid.Row="0"
@@ -88,80 +102,88 @@
             Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             Orientation="Horizontal">
-            <ListView
-                x:Name="AcheivementsView"
-                Grid.Row="0"
-                Grid.Column="0"
-                Height="170"
-                Margin="10,10,30,10"
-                MouseDoubleClick="AcheivementsView_MouseDoubleClick">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="100" Header="Ach. ID">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding AcheiveId}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="150" Header="Ach. Name">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding AchieveName}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="150" Header="Status">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding LockStatus}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <StackPanel>
+                <TextBlock Margin="10,0,30,0" Text="Achievements" />
+                <ListView
+                    x:Name="AcheivementsView"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Height="170"
+                    Margin="10,10,30,10"
+                    MouseDoubleClick="AcheivementsView_MouseDoubleClick">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="100" Header="Ach. ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding AcheiveId}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="150" Header="Ach. Name">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding AchieveName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="150" Header="Status">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LockStatus}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
 
 
-            <ListView
-                x:Name="ReportsListView"
-                Grid.Row="0"
-                Grid.Column="0"
-                Height="170"
-                Margin="30,10,10,10">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="75" Header="Report ID">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding reprotID}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="75" Header="End Time">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding endTime}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="75" Header="Attempt Status">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding attemptStatus}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Width="75" Header="User Score">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding userScore}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <StackPanel>
+                <TextBlock Margin="30,0,0,0" Text="Reports" />
+                <ListView
+                    x:Name="ReportsListView"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Height="170"
+                    Margin="30,10,10,10">
+
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="75" Header="Report ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding reprotID}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="75" Header="End Time">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding endTime}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="75" Header="Attempt Status">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding attemptStatus}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="75" Header="User Score">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding userScore}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
 
         </StackPanel>
     </Grid>

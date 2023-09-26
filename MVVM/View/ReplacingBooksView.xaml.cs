@@ -1,9 +1,11 @@
 ﻿using PROG7312_UI.Core;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace PROG7312_UI.MVVM.View
 {
@@ -15,6 +17,8 @@ namespace PROG7312_UI.MVVM.View
         Random random = new Random();
         ProgressReport pr = ProgressReport.GetProgressReport();
         private DateTime generateStart;
+        private Stopwatch stopwatch;
+        private DispatcherTimer timer;
         private ObservableCollection<string> unorderedBooks = new ObservableCollection<string>();
         private ObservableCollection<string> orderedBooks = new ObservableCollection<string>();
         private ObservableCollection<string> correctOrder = new ObservableCollection<string>();
@@ -33,6 +37,10 @@ namespace PROG7312_UI.MVVM.View
             orderedView.MouseDoubleClick += OrderedView_MouseDoubleClick;
             ReportsListView.ItemsSource = rp.GetReprot();
             AcheivementsView.ItemsSource = ach.GetAcheivementsList();
+            stopwatch = new Stopwatch();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Tick += Timer_Tick;
         }
 
         private void UnorderedView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -71,6 +79,13 @@ namespace PROG7312_UI.MVVM.View
 
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
+            stopwatch.Reset();
+            timer.Stop();
+            stopwatchTextBlock.Text = "00:00";
+
+            stopwatch.Start();
+            timer.Start();
+
             unorderedBooks.Clear();
             orderedBooks.Clear();
             generateStart = DateTime.Now;
@@ -94,6 +109,9 @@ namespace PROG7312_UI.MVVM.View
 
         private void buttonCheck_Click(object sender, RoutedEventArgs e)
         {
+            stopwatch.Stop();
+            timer.Stop();
+
             int scoreCounter = 0;
             correctOrder = new ObservableCollection<string>(orderedBooks);
             int reportID = pr.GetReprot().Count;
@@ -175,6 +193,13 @@ namespace PROG7312_UI.MVVM.View
             int results = this.ToString().CompareTo(other.ToString());
 
             return results;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = stopwatch.Elapsed;
+            string formattedTime = string.Format("{0:00}:{1:00}", elapsed.Minutes, elapsed.Seconds);
+            stopwatchTextBlock.Text = formattedTime;
         }
 
 
