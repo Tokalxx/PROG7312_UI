@@ -14,9 +14,6 @@ namespace PROG7312_UI
         {
             InitializeComponent();
 
-
-
-
         }
 
 

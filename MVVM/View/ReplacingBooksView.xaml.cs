@@ -43,16 +43,36 @@ namespace PROG7312_UI.MVVM.View
             timer.Tick += Timer_Tick;
         }
 
+        /// <summary>
+        /// Method that is exacuted when the player double clicks on the item in the Unordered List
+        /// When it exacutes it will move the item to the Ordered List
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UnorderedView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (unorderedView.SelectedItem != null)
+            try
             {
-                string selectedItem = unorderedView.SelectedItem as string;
-                unorderedBooks.Remove(selectedItem);
-                orderedBooks.Add(selectedItem);
+                if (unorderedView.SelectedItem != null)
+                {
+                    string selectedItem = unorderedView.SelectedItem as string;
+                    unorderedBooks.Remove(selectedItem);
+                    orderedBooks.Add(selectedItem);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ggg");
+            }
+
         }
 
+        /// <summary>
+        /// Method that is exacuted when the player double clicks on the item in the Ordered List
+        /// When it exacutes it will move the item to the Unordered List
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OrderedView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (orderedView.SelectedItem != null)
@@ -63,6 +83,11 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
+        /// <summary>
+        /// Method that when exacuted will display the descriptions for the achievements of the lists
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AcheivementsView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (AcheivementsView.SelectedItem != null)
@@ -77,6 +102,13 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
+        /// <summary>
+        /// Method that will 
+        /// 1st. Start the time tracker
+        /// 2nd. Generate the random itenms for the player to sort 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
             stopwatch.Reset();
@@ -106,7 +138,14 @@ namespace PROG7312_UI.MVVM.View
             buttonCheck.IsEnabled = true;
         }
 
-
+        /// <summary>
+        /// Method that will 
+        /// 1st. Stop the time tracker
+        /// 2nd. Sort the original unordered items
+        /// 3rd. Compare the players list with the sorted on and return the report
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheck_Click(object sender, RoutedEventArgs e)
         {
             stopwatch.Stop();
@@ -133,7 +172,6 @@ namespace PROG7312_UI.MVVM.View
                 }
             }
 
-            //Gets the score of the user.
             for (int i = 0; i < orderedBooks.Count; i++)
             {
 
@@ -143,7 +181,7 @@ namespace PROG7312_UI.MVVM.View
                 }
             }
 
-            //Generates the report for the user.
+            //The report ID of the report are not completely unique
             if (scoreCounter == 10)
             {
                 pr.GenerateReport(reportID + 1, eSeconds, true, scoreCounter);
@@ -163,17 +201,25 @@ namespace PROG7312_UI.MVVM.View
         }
 
 
-
+        /// <summary>
+        /// The method generates the random items that the player will sort
+        /// </summary>
+        /// <returns>A string of the random items for the list</returns>
         public string generateBooks()
         {
-            string ranDeweyNum = random.Next(1000).ToString("000");
+            string ranDeweyNum1 = random.Next(1000).ToString("000");
+            string ranDeweyNum2 = random.Next(1000).ToString("00");
 
             string ranAuther = generateAuther();
 
-            return $"{ranDeweyNum}.{ranAuther}";
+            return $"{ranDeweyNum1}.{ranDeweyNum2}{ranAuther}";
 
         }
 
+        /// <summary>
+        /// The method will return the random string for the items in the above method
+        /// </summary>
+        /// <returns>A string that is the random string for the auther name</returns>
         public string generateAuther()
         {
             string source = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
@@ -188,6 +234,11 @@ namespace PROG7312_UI.MVVM.View
             return new string(ranChar);
         }
 
+        /// <summary>
+        /// Method that will compare the strings and then with each other.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public int Compare(string other)
         {
             int results = this.ToString().CompareTo(other.ToString());
@@ -195,6 +246,11 @@ namespace PROG7312_UI.MVVM.View
             return results;
         }
 
+        /// <summary>
+        /// The method tracks the time it takes for the player to complate the game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
             TimeSpan elapsed = stopwatch.Elapsed;

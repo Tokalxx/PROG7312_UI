@@ -17,8 +17,15 @@ namespace PROG7312_UI.MVVM.View
         public HelpView()
         {
             InitializeComponent();
+
+            textBlockHelpDescription.Text = uh.GetHelpList()[0].helpDescription;
         }
 
+        /// <summary>
+        /// Changes the picture, Title, and description to the previous item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBack_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -51,7 +58,11 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
-
+        /// <summary>
+        /// Changes the picture, Title, and description to the next item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonNext_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             try
