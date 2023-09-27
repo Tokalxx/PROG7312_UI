@@ -49,43 +49,51 @@ namespace PROG7312_UI.Core
         /// <param name="list"></param>Report List
         public void checkForAcheievements(ObservableCollection<ReportModel> list)
         {
-
-
-            if (acheivements[0].LockStatus.ToLower() == "locked" && checkAcheivement1(list))
+            try
             {
-                MessageBox.Show("Acheivement 1 Unlocked");
+                if (acheivements[0].LockStatus.ToLower() == "locked" && checkAcheivement1(list))
+                {
+                    MessageBox.Show("Acheivement 1 Unlocked");
+                }
+
+                if (acheivements[1].LockStatus.ToLower() == "locked" && checkAcheivement2(list))
+                {
+                    MessageBox.Show("Acheivement 2 Unlocked");
+
+                }
+                if (acheivements[2].LockStatus.ToLower() == "locked" && checkAcheivement3(list))
+                {
+                    MessageBox.Show("Acheivement 3 Unlocked");
+
+                }
+                if (acheivements[3].LockStatus.ToLower() == "locked" && checkAcheivement4(list))
+                {
+                    MessageBox.Show("Acheivement 4 Unlocked");
+
+                }
+                if (acheivements[4].LockStatus.ToLower() == "locked" && checkAcheivement5(list))
+                {
+                    MessageBox.Show("Acheivement 5 Unlocked");
+
+                }
+                if (acheivements[5].LockStatus.ToLower() == "locked" && checkAcheivement6(list))
+                {
+                    MessageBox.Show("Acheivement 6 Unlocked");
+
+                }
+                if (acheivements[6].LockStatus.ToLower() == "locked" && checkAcheivement7(list))
+                {
+                    MessageBox.Show("Acheivement 7 Unlocked");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
-            if (acheivements[1].LockStatus.ToLower() == "locked" && checkAcheivement2(list))
-            {
-                MessageBox.Show("Acheivement 2 Unlocked");
 
-            }
-            if (acheivements[2].LockStatus.ToLower() == "locked" && checkAcheivement3(list))
-            {
-                MessageBox.Show("Acheivement 3 Unlocked");
 
-            }
-            if (acheivements[3].LockStatus.ToLower() == "locked" && checkAcheivement4(list))
-            {
-                MessageBox.Show("Acheivement 4 Unlocked");
-
-            }
-            if (acheivements[4].LockStatus.ToLower() == "locked" && checkAcheivement5(list))
-            {
-                MessageBox.Show("Acheivement 5 Unlocked");
-
-            }
-            if (acheivements[5].LockStatus.ToLower() == "locked" && checkAcheivement6(list))
-            {
-                MessageBox.Show("Acheivement 6 Unlocked");
-
-            }
-            if (acheivements[6].LockStatus.ToLower() == "locked" && checkAcheivement7(list))
-            {
-                MessageBox.Show("Acheivement 7 Unlocked");
-
-            }
 
         }
 

@@ -62,7 +62,7 @@ namespace PROG7312_UI.MVVM.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ggg");
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -75,12 +75,20 @@ namespace PROG7312_UI.MVVM.View
         /// <param name="e"></param>
         private void OrderedView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (orderedView.SelectedItem != null)
+            try
             {
-                string selectedItem = orderedView.SelectedItem as string;
-                orderedBooks.Remove(selectedItem);
-                unorderedBooks.Add(selectedItem);
+                if (orderedView.SelectedItem != null)
+                {
+                    string selectedItem = orderedView.SelectedItem as string;
+                    orderedBooks.Remove(selectedItem);
+                    unorderedBooks.Add(selectedItem);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -90,16 +98,25 @@ namespace PROG7312_UI.MVVM.View
         /// <param name="e"></param>
         private void AcheivementsView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (AcheivementsView.SelectedItem != null)
-            {
-                // Cast the selected item to your data type (AcheivementModels)
-                AcheivementModels selectedItem = AcheivementsView.SelectedItem as AcheivementModels;
 
-                if (selectedItem != null)
+            try
+            {
+                if (AcheivementsView.SelectedItem != null)
                 {
-                    MessageBox.Show($"Achievement Description: \n{selectedItem.AcheiveDescrip}");
+                    // Cast the selected item to your data type (AcheivementModels)
+                    AcheivementModels selectedItem = AcheivementsView.SelectedItem as AcheivementModels;
+
+                    if (selectedItem != null)
+                    {
+                        MessageBox.Show($"Achievement Description: \n{selectedItem.AcheiveDescrip}");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         /// <summary>
@@ -123,15 +140,24 @@ namespace PROG7312_UI.MVVM.View
             generateStart = DateTime.Now;
 
             int num = 0;
-            while (num < 10)
+            try
             {
-                string tempDewey = generateBooks();
-                if (!unorderedBooks.Contains(tempDewey))
+                while (num < 10)
                 {
-                    unorderedBooks.Add(tempDewey);
-                    num++;
+                    string tempDewey = generateBooks();
+                    if (!unorderedBooks.Contains(tempDewey))
+                    {
+                        unorderedBooks.Add(tempDewey);
+                        num++;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
 
 
             buttonGenerate.IsEnabled = false;
@@ -159,40 +185,48 @@ namespace PROG7312_UI.MVVM.View
             TimeSpan eTime = DateTime.Now - generateStart;
             double eSeconds = Math.Round(eTime.TotalSeconds, 2);
 
-            for (int i = 0; i < correctOrder.Count; i++)
+            try
             {
-                for (int j = i + 1; j < correctOrder.Count; j++)
+                for (int i = 0; i < correctOrder.Count; i++)
                 {
-                    if (correctOrder[j].CompareTo(correctOrder[i]) < 0)
+                    for (int j = i + 1; j < correctOrder.Count; j++)
                     {
-                        string temp = correctOrder[j];
-                        correctOrder[j] = correctOrder[i];
-                        correctOrder[i] = temp;
+                        if (correctOrder[j].CompareTo(correctOrder[i]) < 0)
+                        {
+                            string temp = correctOrder[j];
+                            correctOrder[j] = correctOrder[i];
+                            correctOrder[i] = temp;
+                        }
                     }
                 }
-            }
 
-            for (int i = 0; i < orderedBooks.Count; i++)
-            {
-
-                if (orderedBooks[i] == correctOrder[i])
+                for (int i = 0; i < orderedBooks.Count; i++)
                 {
-                    scoreCounter++;
+
+                    if (orderedBooks[i] == correctOrder[i])
+                    {
+                        scoreCounter++;
+                    }
+                }
+
+                //The report ID of the report are not completely unique
+                if (scoreCounter == 10)
+                {
+                    pr.GenerateReport(reportID + 1, eSeconds, true, scoreCounter);
+                    ach.checkForAcheievements(pr.GetReprot());
+
+                }
+                else
+                {
+                    pr.GenerateReport(reportID + 1, eSeconds, false, scoreCounter);
+                    ach.checkForAcheievements(pr.GetReprot());
                 }
             }
-
-            //The report ID of the report are not completely unique
-            if (scoreCounter == 10)
+            catch (Exception ex)
             {
-                pr.GenerateReport(reportID + 1, eSeconds, true, scoreCounter);
-                ach.checkForAcheievements(pr.GetReprot());
+                MessageBox.Show(ex.Message);
+            }
 
-            }
-            else
-            {
-                pr.GenerateReport(reportID + 1, eSeconds, false, scoreCounter);
-                ach.checkForAcheievements(pr.GetReprot());
-            }
 
             unorderedBooks.Clear();
             orderedBooks.Clear();
