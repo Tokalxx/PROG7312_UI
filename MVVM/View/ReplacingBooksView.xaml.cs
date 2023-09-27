@@ -208,7 +208,7 @@ namespace PROG7312_UI.MVVM.View
         public string generateBooks()
         {
             string ranDeweyNum1 = random.Next(1000).ToString("000");
-            string ranDeweyNum2 = random.Next(1000).ToString("00");
+            string ranDeweyNum2 = random.Next(100).ToString("00");
 
             string ranAuther = generateAuther();
 
