@@ -5,7 +5,8 @@ namespace PROG7312_UI.Core
     public class ProgressReport
     {
         private static readonly ProgressReport _instance = new ProgressReport();
-        private ObservableCollection<ReportModel> report = new ObservableCollection<ReportModel>();
+        private ObservableCollection<ReportRBModel> reportRB = new ObservableCollection<ReportRBModel>();
+        private ObservableCollection<ReportIAModel> reportIA = new ObservableCollection<ReportIAModel>();
 
         private ProgressReport()
         {
@@ -33,32 +34,51 @@ namespace PROG7312_UI.Core
         public void GenerateReport(int id, double time, bool status, int score)
         {
             string reprotId = "RP." + id.ToString();
-            report.Add(new ReportModel(reprotId, time, status, score));
+            reportRB.Add(new ReportRBModel(reprotId, time, status, score));
+        }
+
+        public void GenerateIA(int id, bool status, string score)
+        {
+
         }
 
         /// <summary>
         /// Method that will return the list to where it is being called
         /// </summary>
         /// <returns> ObservableCollection<ReportModel> report </returns>
-        public ObservableCollection<ReportModel> GetReprot()
+        public ObservableCollection<ReportRBModel> GetReprot()
         {
-            return report;
+            return reportRB;
         }
     }
 
-    public class ReportModel
+    public class ReportRBModel
     {
         public string reprotID { get; set; }
         public double endTime { get; set; }
         public bool attemptStatus { get; set; }
         public int userScore { get; set; }
 
-        public ReportModel(string id, double time, bool status, int score)
+        public ReportRBModel(string id, double time, bool status, int score)
         {
             reprotID = id;
             endTime = time;
             attemptStatus = status;
             userScore = score;
+        }
+    }
+
+    public class ReportIAModel
+    {
+        public string reprotID { get; set; }
+        public bool attemptStatus { get; set; }
+        public int userScore { get; set; }
+
+        public ReportIAModel(string reprotID, bool attemptStatus, int userScore)
+        {
+            this.reprotID = reprotID;
+            this.attemptStatus = attemptStatus;
+            this.userScore = userScore;
         }
     }
 }

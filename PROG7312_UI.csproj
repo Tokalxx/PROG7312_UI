@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Core\Acheivements.cs" />
     <Compile Include="Core\CommandBase.cs" />
+    <Compile Include="Core\IdentifyingDefinitions.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\ProgressReport.cs" />
     <Compile Include="Core\RelayCommand.cs" />

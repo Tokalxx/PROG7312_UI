@@ -71,21 +71,21 @@
             </StackPanel>
 
 
-            <ContentControl
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="10"
-                Content="{Binding CurrentView}" />
             <!--<ContentControl
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
+                Margin="10"
+                Content="{Binding CurrentView}" />-->
+            <ContentControl
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 Margin="10">
-                <view:HelpView />
-            </ContentControl>-->
+                <view:IdentifyAreaView />
+            </ContentControl>
 
 
 
