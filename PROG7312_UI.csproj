@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DesignGenerate\IdentifyAreaDesign.cs" />
     <Compile Include="Core\Acheivements.cs" />
     <Compile Include="Core\CommandBase.cs" />
     <Compile Include="Core\IdentifyingDefinitions.cs" />

@@ -1,4 +1,5 @@
 ﻿using PROG7312_UI.Core;
+using PROG7312_UI.DesignGenerate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,110 +17,88 @@ namespace PROG7312_UI.MVVM.View
     {
 
         IdentifyingDefinitions idd = IdentifyingDefinitions.GetDefinition();
+        ProgressReport report = ProgressReport.GetProgressReport();
+        IdentifyAreaDesign idDesign = new IdentifyAreaDesign();
         Dictionary<string, string> checkDictionary = new Dictionary<string, string>();
+        private TextBlock callNumberTextBlock = null;
+        bool checkGenerateMethod = true;
+        Random ran = new Random();
         int TempNumScore = 0;
+        bool checkbutton1 = true;
 
         public IdentifyAreaView()
         {
             InitializeComponent();
+
+            ReportsListView.ItemsSource = report.GetReprotIA();
         }
 
 
 
         private void PopulateDesciptionTextBlock()
         {
-            Dictionary<string, string> questionDic = GetUsableDictionary(idd.GetCallDefinition());
-            Random ran = new Random();
-            List<string> callNumbers = questionDic.Keys.ToList();
-            List<string> calDescription = questionDic.Values.ToList();
+            Dictionary<string, string> tempDictionary = idd.GetShuffledDictionary();
+
+            List<string> callNumbers = tempDictionary.Keys.ToList();
+            List<string> calDescription = tempDictionary.Values.ToList();
 
 
             foreach (string x in callNumbers.OrderBy(x => ran.Next()))
             {
-                TextBlock callTextBlock = new TextBlock
-                {
-                    Text = x,
-                    Cursor = Cursors.Hand,
-                    FontFamily = new FontFamily("Arial"),
-                    FontSize = 20,
-                    Width = 100,
-                    Height = 30,
-                    Margin = new Thickness(15),
-                    TextAlignment = TextAlignment.Center,
-                };
-                callTextBlock.MouseLeftButtonDown += Call_MouseButtonClick;
+                TextBlock callTextBlock = idDesign.CallNumberTextBlock(x);
+                callTextBlock.MouseLeftButtonDown += Definition_MouseLeftButtonClick;
 
                 RightStackPanel.Children.Add(callTextBlock);
-
             }
+
             foreach (string x in calDescription.Take(4))
             {
 
 
-                TextBlock definitionTextBlock = new TextBlock
-                {
-                    Text = x,
-                    Cursor = Cursors.Hand,
-                    FontFamily = new FontFamily("Arial"),
-                    FontSize = 20,
-                    Width = 400,
-                    Height = 30,
-                    Margin = new Thickness(15),
-                    TextAlignment = TextAlignment.Center,
-                };
-                definitionTextBlock.MouseLeftButtonUp += Definition_MouseLeftButtonClick;
+                TextBlock definitionTextBlock = idDesign.DefinitionTextBlock(x);
+                definitionTextBlock.MouseLeftButtonUp += Call_MouseButtonClick;
 
                 LeftStackPanel.Children.Add(definitionTextBlock);
+
             }
+            idDesign.changeStackPanel(LeftStackPanel, RightStackPanel, checkGenerateMethod);
+
+            checkGenerateMethod = true;
         }
         private void PopulateCallNumberTextBlock()
         {
-            Dictionary<string, string> questionDic = GetUsableDictionary(idd.GetCallDefinition());
-            Random ran = new Random();
-            List<string> callNumbers = questionDic.Keys.ToList();
-            List<string> calDescription = questionDic.Values.ToList();
+
+            Dictionary<string, string> tempDictionary = idd.GetShuffledDictionary();
+
+            List<string> callNumbers = tempDictionary.Keys.ToList();
+            List<string> calDescription = tempDictionary.Values.ToList();
 
 
             foreach (string x in callNumbers.Take(4))
             {
-                TextBlock callTextBlock = new TextBlock
-                {
-                    Text = x,
-                    Cursor = Cursors.Hand,
-                    FontFamily = new FontFamily("Arial"),
-                    FontSize = 20,
-                    Width = 100,
-                    Height = 30,
-                    Margin = new Thickness(15),
-                    TextAlignment = TextAlignment.Center,
-                };
+                TextBlock callTextBlock = idDesign.CallNumberTextBlock(x);
                 callTextBlock.MouseLeftButtonDown += Call_MouseButtonClick;
 
                 LeftStackPanel.Children.Add(callTextBlock);
+
 
             }
             foreach (string x in calDescription.OrderBy(x => ran.Next()))
             {
 
 
-                TextBlock definitionTextBlock = new TextBlock
-                {
-                    Text = x,
-                    Cursor = Cursors.Hand,
-                    FontFamily = new FontFamily("Arial"),
-                    FontSize = 20,
-                    Width = 400,
-                    Height = 30,
-                    Margin = new Thickness(15),
-                    TextAlignment = TextAlignment.Center,
-                };
+                TextBlock definitionTextBlock = idDesign.DefinitionTextBlock(x);
                 definitionTextBlock.MouseLeftButtonUp += Definition_MouseLeftButtonClick;
 
                 RightStackPanel.Children.Add(definitionTextBlock);
+
             }
+
+            idDesign.changeStackPanel(LeftStackPanel, RightStackPanel, checkGenerateMethod);
+            checkGenerateMethod = false;
         }
 
-        private TextBlock callNumberTextBlock = null;
+
         private void Call_MouseButtonClick(object sender, MouseButtonEventArgs e)
         {
             callNumberTextBlock = (TextBlock)sender;
@@ -130,15 +109,30 @@ namespace PROG7312_UI.MVVM.View
         {
             if (callNumberTextBlock != null)
             {
-                TextBlock descriptTextBlock = (TextBlock)sender;
-                checkDictionary.Add(callNumberTextBlock.Text, descriptTextBlock.Text);
-                callNumberTextBlock.Background = Brushes.Gray;
-                callNumberTextBlock.IsHitTestVisible = false;
-                descriptTextBlock.Background = Brushes.Gray;
-                descriptTextBlock.IsHitTestVisible = false;
 
-                callNumberTextBlock = null;
 
+                if (!checkGenerateMethod)
+                {
+                    TextBlock descriptTextBlock = (TextBlock)sender;
+                    checkDictionary.Add(callNumberTextBlock.Text, descriptTextBlock.Text);
+                    callNumberTextBlock.Background = Brushes.Gray;
+                    callNumberTextBlock.IsHitTestVisible = false;
+                    descriptTextBlock.Background = Brushes.Gray;
+                    descriptTextBlock.IsHitTestVisible = false;
+
+                    callNumberTextBlock = null;
+                }
+                else
+                {
+                    TextBlock descriptTextBlock = (TextBlock)sender;
+                    checkDictionary.Add(descriptTextBlock.Text, callNumberTextBlock.Text);
+                    callNumberTextBlock.Background = Brushes.Gray;
+                    callNumberTextBlock.IsHitTestVisible = false;
+                    descriptTextBlock.Background = Brushes.Gray;
+                    descriptTextBlock.IsHitTestVisible = false;
+
+                    callNumberTextBlock = null;
+                }
             }
             else
             {
@@ -146,36 +140,40 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
-        private Dictionary<string, string> GetUsableDictionary(Dictionary<string, string> dic)
-        {
-            List<string> randomKeys = dic.Keys.OrderBy(x => Guid.NewGuid()).ToList();
-
-            List<string> usedKeys = randomKeys.Take(7).ToList();
-
-            Dictionary<string, string> usableDictionary = usedKeys.ToDictionary(key => key, key => dic[key]);
-
-            return usableDictionary;
-        }
 
 
         private void buttonAnswer_Click(object sender, RoutedEventArgs e)
         {
-            foreach (KeyValuePair<string, string> x in checkDictionary)
+            buttonAnswer.IsEnabled = false;
+            buttonClear.IsEnabled = false;
+            buttonGenerate.IsEnabled = true;
+
+            foreach (KeyValuePair<string, string> x in idd.GetDeweyDictionary())
             {
-                foreach (KeyValuePair<string, string> y in idd.GetCallDefinition())
+                if (checkDictionary.TryGetValue(x.Key, out string area))
                 {
-                    if (x.Key == y.Key)
+                    if (x.Value.Equals(area))
                     {
-                        if (x.Value == y.Value)
+                        foreach (TextBlock tb in LeftStackPanel.Children)
                         {
-                            ++TempNumScore;
+                            if (tb.Text == x.Key || tb.Text == x.Value)
+                            {
+                                tb.Background = Brushes.LimeGreen;
+                            }
                         }
+                        TempNumScore++;
                     }
                 }
             }
 
 
+            bool status = false;
+            if (TempNumScore >= 3)
+            {
+                status = true;
+            }
             fillProgressBar(TempNumScore);
+            report.GenerateIA(status, TempNumScore);
         }
 
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
@@ -183,9 +181,22 @@ namespace PROG7312_UI.MVVM.View
             LeftStackPanel.Children.Clear();
             RightStackPanel.Children.Clear();
             checkDictionary.Clear();
+            progressBarResults.Value = 0;
+            textBlockScore.Text = "";
+            buttonAnswer.IsEnabled = true;
+            buttonClear.IsEnabled = true;
+            buttonGenerate.IsEnabled = false;
             TempNumScore = 0;
 
-            PopulateCallNumberTextBlock();
+            if (checkGenerateMethod)
+            {
+                PopulateCallNumberTextBlock();
+            }
+            else
+            {
+                PopulateDesciptionTextBlock();
+            }
+
         }
 
         public void fillProgressBar(int score)
@@ -213,23 +224,21 @@ namespace PROG7312_UI.MVVM.View
                     textBlockScore.Text = "100%";
                     break;
             }
-
-
         }
 
-        public static void ShuffleArray<T>(T[] array)
+        private void buttonClear_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random();
-            int n = array.Length;
-
-            for (int i = n - 1; i > 0; i--)
+            checkDictionary.Clear();
+            foreach (TextBlock x in LeftStackPanel.Children)
             {
-                int j = random.Next(0, i + 1);
-                T temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+                x.Background = Brushes.Transparent;
+                x.IsHitTestVisible = true;
+            }
+            foreach (TextBlock x in RightStackPanel.Children)
+            {
+                x.Background = Brushes.Transparent;
+                x.IsHitTestVisible = true;
             }
         }
-
     }
 }

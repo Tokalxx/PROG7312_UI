@@ -32,7 +32,8 @@
                     BorderThickness="3"
                     Click="buttonAnswer_Click"
                     FontFamily="Arial"
-                    FontSize="25">
+                    FontSize="25"
+                    IsEnabled="False">
                     Answer
                 </Button>
                 <Button
@@ -44,22 +45,36 @@
                     BorderThickness="3"
                     Click="buttonGenerate_Click"
                     FontFamily="Arial"
-                    FontSize="20">
+                    FontSize="20"
+                    >
                     Generate
+                </Button>
+                <Button
+                    x:Name="buttonClear"
+                    Width="100"
+                    Height="40"
+                    Margin="10"
+                    Background="Gray"
+                    BorderThickness="3"
+                    Click="buttonClear_Click"
+                    FontFamily="Arial"
+                    FontSize="20"
+                    IsEnabled="False">
+                    Clear
                 </Button>
             </StackPanel>
             <StackPanel
                 x:Name="LeftStackPanel"
                 Width="100"
                 Height="400"
-                Margin="20,0,40,0" 
-                Background="red"/>
+                Margin="20,0,40,0"
+                Background="red" />
 
             <StackPanel
                 x:Name="RightStackPanel"
                 Width="500"
-                Height="400" 
-                Background="green"/>
+                Height="400"
+                Background="green" />
         </StackPanel>
         <StackPanel
             Grid.Row="2"
@@ -98,13 +113,6 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding reprotID}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                            <GridViewColumn Width="75" Header="End Time">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding endTime}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

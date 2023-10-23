@@ -5,8 +5,8 @@ namespace PROG7312_UI.Core
     public class ProgressReport
     {
         private static readonly ProgressReport _instance = new ProgressReport();
-        private ObservableCollection<ReportRBModel> reportRB = new ObservableCollection<ReportRBModel>();
-        private ObservableCollection<ReportIAModel> reportIA = new ObservableCollection<ReportIAModel>();
+        private ObservableCollection<ReportModel> reportRB = new ObservableCollection<ReportModel>();
+        private ObservableCollection<ReportModel> reportIA = new ObservableCollection<ReportModel>();
 
         private ProgressReport()
         {
@@ -31,54 +31,54 @@ namespace PROG7312_UI.Core
         /// <param name="time"></param> Time it took the player to complete the game
         /// <param name="status"></param> Status of the report to see if the player passed or not
         /// <param name="score"></param> The player's score
-        public void GenerateReport(int id, double time, bool status, int score)
+        public void GenerateReport(double time, bool status, int score)
         {
-            string reprotId = "RP." + id.ToString();
-            reportRB.Add(new ReportRBModel(reprotId, time, status, score));
+
+            reportRB.Add(new ReportModel("RP." + (reportRB.Count + 1), time, status, score));
         }
 
-        public void GenerateIA(int id, bool status, string score)
+        public void GenerateIA(bool status, int score)
         {
 
+            reportIA.Add(new ReportModel("RP." + (reportIA.Count + 1), status, score));
         }
 
         /// <summary>
         /// Method that will return the list to where it is being called
         /// </summary>
         /// <returns> ObservableCollection<ReportModel> report </returns>
-        public ObservableCollection<ReportRBModel> GetReprot()
+        public ObservableCollection<ReportModel> GetReprotRB()
         {
             return reportRB;
         }
+
+        public ObservableCollection<ReportModel> GetReprotIA()
+        {
+            return reportIA;
+        }
     }
 
-    public class ReportRBModel
+    public class ReportModel
     {
         public string reprotID { get; set; }
         public double endTime { get; set; }
         public bool attemptStatus { get; set; }
         public int userScore { get; set; }
 
-        public ReportRBModel(string id, double time, bool status, int score)
+        public ReportModel(string id, double time, bool status, int score)
         {
             reprotID = id;
             endTime = time;
             attemptStatus = status;
             userScore = score;
         }
-    }
 
-    public class ReportIAModel
-    {
-        public string reprotID { get; set; }
-        public bool attemptStatus { get; set; }
-        public int userScore { get; set; }
-
-        public ReportIAModel(string reprotID, bool attemptStatus, int userScore)
+        public ReportModel(string id, bool status, int score)
         {
-            this.reprotID = reprotID;
-            this.attemptStatus = attemptStatus;
-            this.userScore = userScore;
+            reprotID = id;
+            attemptStatus = status;
+            userScore = score;
         }
     }
+
 }

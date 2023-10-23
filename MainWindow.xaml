@@ -51,7 +51,6 @@
                     Background="DarkGray"
                     Content="Identify Areas"
                     FontSize="17"
-                    IsEnabled="False"
                     Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton
                     Height="50"

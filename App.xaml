@@ -19,9 +19,14 @@
             <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
                 <view:HelpView />
             </DataTemplate>
+
+            <Style x:Key="BaseTextBlock" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="TextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
         </ResourceDictionary>
-
-
-
     </Application.Resources>
 </Application>

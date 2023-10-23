@@ -47,7 +47,7 @@ namespace PROG7312_UI.Core
         /// the user has unlocked any achievements.
         /// </summary>
         /// <param name="list"></param>Report List
-        public void checkForAcheievements(ObservableCollection<ReportRBModel> list)
+        public void checkForAcheievements(ObservableCollection<ReportModel> list)
         {
             try
             {
@@ -102,9 +102,9 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement1(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement1(ObservableCollection<ReportModel> list)
         {
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.endTime < timeCheckAcheivement1.TotalSeconds && x.attemptStatus == true)
                 {
@@ -121,9 +121,9 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement2(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement2(ObservableCollection<ReportModel> list)
         {
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.endTime < timeCheckAcheivement2.TotalSeconds && x.attemptStatus == true)
                 {
@@ -140,9 +140,9 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement3(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement3(ObservableCollection<ReportModel> list)
         {
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.endTime < timeCheckAcheivement3.TotalSeconds && x.attemptStatus == true)
                 {
@@ -159,11 +159,11 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement4(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement4(ObservableCollection<ReportModel> list)
         {
             int num = 0;
 
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.attemptStatus)
                 {
@@ -184,11 +184,11 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement5(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement5(ObservableCollection<ReportModel> list)
         {
             int num = 0;
 
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.attemptStatus)
                 {
@@ -209,11 +209,11 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement6(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement6(ObservableCollection<ReportModel> list)
         {
             int num = 0;
 
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.attemptStatus)
                 {
@@ -243,11 +243,11 @@ namespace PROG7312_UI.Core
         /// </summary>
         /// <param name="list"></param>Report List
         /// <returns> true </returns>
-        public bool checkAcheivement7(ObservableCollection<ReportRBModel> list)
+        public bool checkAcheivement7(ObservableCollection<ReportModel> list)
         {
             int num = 0;
 
-            foreach (ReportRBModel x in list)
+            foreach (ReportModel x in list)
             {
                 if (x.attemptStatus)
                 {

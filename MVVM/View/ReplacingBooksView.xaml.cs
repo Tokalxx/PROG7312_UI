@@ -35,7 +35,7 @@ namespace PROG7312_UI.MVVM.View
             orderedView.ItemsSource = orderedBooks;
             unorderedView.MouseDoubleClick += UnorderedView_MouseDoubleClick;
             orderedView.MouseDoubleClick += OrderedView_MouseDoubleClick;
-            ReportsListView.ItemsSource = rp.GetReprot();
+            ReportsListView.ItemsSource = rp.GetReprotRB();
             AcheivementsView.ItemsSource = ach.GetAcheivementsList();
             stopwatch = new Stopwatch();
             timer = new DispatcherTimer();
@@ -179,7 +179,6 @@ namespace PROG7312_UI.MVVM.View
 
             int scoreCounter = 0;
             correctOrder = new ObservableCollection<string>(orderedBooks);
-            int reportID = pr.GetReprot().Count;
 
 
             TimeSpan eTime = DateTime.Now - generateStart;
@@ -209,17 +208,16 @@ namespace PROG7312_UI.MVVM.View
                     }
                 }
 
-                //The report ID of the report are not completely unique
                 if (scoreCounter == 10)
                 {
-                    pr.GenerateReport(reportID + 1, eSeconds, true, scoreCounter);
-                    ach.checkForAcheievements(pr.GetReprot());
+                    pr.GenerateReport(eSeconds, true, scoreCounter);
+                    ach.checkForAcheievements(pr.GetReprotRB());
 
                 }
                 else
                 {
-                    pr.GenerateReport(reportID + 1, eSeconds, false, scoreCounter);
-                    ach.checkForAcheievements(pr.GetReprot());
+                    pr.GenerateReport(eSeconds, false, scoreCounter);
+                    ach.checkForAcheievements(pr.GetReprotRB());
                 }
             }
             catch (Exception ex)
