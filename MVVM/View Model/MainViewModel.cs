@@ -6,9 +6,11 @@ namespace PROG7312_UI.MVVM.View_Model
     {
 
         public RelayCommand RBCommand { get; set; }
+        public RelayCommand IACommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
 
         public RBViewModel RBVM { get; set; }
+        public IAViewModel IAVM { get; set; }
         public HelpViewModel HVM { get; set; }
 
 
@@ -20,7 +22,7 @@ namespace PROG7312_UI.MVVM.View_Model
             set
             {
                 _currentView = value;
-                OnPropertyChnage();
+                OnPropertyChange();
             }
         }
 
@@ -31,14 +33,17 @@ namespace PROG7312_UI.MVVM.View_Model
             set
             {
                 _helpView = value;
-                OnPropertyChnage();
+                OnPropertyChange();
             }
         }
+
+
 
 
         public MainViewModel()
         {
             RBVM = new RBViewModel();
+            IAVM = new IAViewModel();
             HVM = new HelpViewModel();
 
 
@@ -49,6 +54,10 @@ namespace PROG7312_UI.MVVM.View_Model
             HelpCommand = new RelayCommand(o =>
             {
                 CurrentView = HVM;
+            });
+            IACommand = new RelayCommand(o =>
+            {
+                CurrentView = IAVM;
             });
 
 

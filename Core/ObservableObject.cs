@@ -7,7 +7,7 @@ namespace PROG7312_UI.Core
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChnage([CallerMemberName] string name = null)
+        protected void OnPropertyChange([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }

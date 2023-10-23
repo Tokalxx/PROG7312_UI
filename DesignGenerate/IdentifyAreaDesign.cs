@@ -46,18 +46,14 @@ namespace PROG7312_UI.DesignGenerate
             if (check)
             {
                 stack1.Width = 100;
-                stack1.Background = Brushes.Red;
 
                 stack2.Width = 500;
-                stack2.Background = Brushes.Green;
             }
             else
             {
                 stack1.Width = 500;
-                stack1.Background = Brushes.Red;
 
                 stack2.Width = 100;
-                stack2.Background = Brushes.Green;
             }
         }
     }
