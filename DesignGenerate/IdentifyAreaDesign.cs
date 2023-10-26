@@ -7,6 +7,11 @@ namespace PROG7312_UI.DesignGenerate
 {
     public class IdentifyAreaDesign
     {
+        /// <summary>
+        /// Design for the TextBlock
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public TextBlock CallNumberTextBlock(string x)
         {
             TextBlock textBlock = new TextBlock
@@ -23,6 +28,11 @@ namespace PROG7312_UI.DesignGenerate
             return textBlock;
         }
 
+        /// <summary>
+        /// Design for the TextBlock
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public TextBlock DefinitionTextBlock(string x)
         {
             TextBlock textBlock = new TextBlock()
@@ -33,14 +43,21 @@ namespace PROG7312_UI.DesignGenerate
                 FontFamily = new FontFamily("Arial"),
                 FontSize = 20,
                 Width = 400,
-                Height = 35,
+                Height = 45,
                 Margin = new Thickness(5),
                 TextAlignment = TextAlignment.Center,
+                TextWrapping = TextWrapping.Wrap
             };
 
             return textBlock;
         }
 
+        /// <summary>
+        /// Changing the size of the stack panel dynamically
+        /// </summary>
+        /// <param name="stack1"></param>
+        /// <param name="stack2"></param>
+        /// <param name="check"></param>
         public void changeStackPanel(StackPanel stack1, StackPanel stack2, bool check)
         {
             if (check)

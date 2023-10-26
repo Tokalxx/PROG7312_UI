@@ -171,5 +171,19 @@
     <Resource Include="Images\04.PNG" />
     <Resource Include="Images\05.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Identify\01Home.PNG" />
+    <Resource Include="Images\Identify\02Base.PNG" />
+    <Resource Include="Images\Identify\03Generate.PNG" />
+    <Resource Include="Images\Identify\04Answer.PNG" />
+    <Resource Include="Images\Identify\05Clear.PNG" />
+    <Resource Include="Images\Identify\06Select.PNG" />
+    <Resource Include="Images\Identify\07SelectedItem.PNG" />
+    <Resource Include="Images\Identify\08Right.PNG" />
+    <Resource Include="Images\Identify\09Wrong.PNG" />
+    <Resource Include="Images\Identify\10ProgressBar.PNG" />
+    <Resource Include="Images\Identify\11Report.PNG" />
+    <Resource Include="Images\Identify\12SwapedPanel.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

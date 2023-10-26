@@ -23,28 +23,30 @@ namespace PROG7312_UI.Core
             CallDefinition.Add("800", "Literature");
             CallDefinition.Add("900", "History & Geography");
 
-            //CallDefinition.Add("1", "1");
-            //CallDefinition.Add("2", "2");
-            //CallDefinition.Add("3", "3");
-            //CallDefinition.Add("4", "4");
-            //CallDefinition.Add("5", "5");
-            //CallDefinition.Add("6", "6");
-            //CallDefinition.Add("7", "7");
-            //CallDefinition.Add("8", "8");
-            //CallDefinition.Add("9", "9");
-            //CallDefinition.Add("10", "10");
         }
 
+        /// <summary>
+        /// Returns the instance of this class. 
+        /// </summary>
+        /// <returns></returns>
         public static IdentifyingDefinitions GetDefinition()
         {
             return _instance;
         }
 
+        /// <summary>
+        /// Returns the Dictionary
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetDeweyDictionary()
         {
             return CallDefinition;
         }
 
+        /// <summary>
+        /// Shuffles the dictionary for the user.
+        /// </summary>
+        /// <returns></returns>
         public Dictionary<string, string> GetShuffledDictionary()
         {
 

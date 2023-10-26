@@ -65,9 +65,10 @@ namespace PROG7312_UI.MVVM.View
         /// <param name="e"></param>
         private void buttonNext_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            //uh.GetHelpList().Count - 1
             try
             {
-                if (imageNumber < 5)
+                if (imageNumber < 17)
                 {
                     imageNumber++;
                     buttonBack.IsEnabled = true;
@@ -87,7 +88,7 @@ namespace PROG7312_UI.MVVM.View
                     buttonNext.IsEnabled = false;
                 }
 
-                if (imageNumber == 5)
+                if (imageNumber == 17)
                 {
                     buttonNext.IsEnabled = false;
 

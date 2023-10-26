@@ -34,7 +34,9 @@ namespace PROG7312_UI.MVVM.View
         }
 
 
-
+        /// <summary>
+        /// One of the Methods used to populate the stack panels. The Left with description and the right with call numbner
+        /// </summary>
         private void PopulateDesciptionTextBlock()
         {
             Dictionary<string, string> tempDictionary = idd.GetShuffledDictionary();
@@ -65,6 +67,10 @@ namespace PROG7312_UI.MVVM.View
 
             checkGenerateMethod = true;
         }
+
+        /// <summary>
+        /// One of the Methods used to populate the stack panels. The Left with call numbers and the right with description
+        /// </summary>
         private void PopulateCallNumberTextBlock()
         {
 
@@ -98,107 +104,163 @@ namespace PROG7312_UI.MVVM.View
             checkGenerateMethod = false;
         }
 
-
+        /// <summary>
+        /// This click event is used for the user to assign the key to a TextBlock variable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Call_MouseButtonClick(object sender, MouseButtonEventArgs e)
         {
-            callNumberTextBlock = (TextBlock)sender;
-            callNumberTextBlock.Background = Brushes.Yellow;
+            try
+            {
+                callNumberTextBlock = (TextBlock)sender;
+                callNumberTextBlock.Background = Brushes.Yellow;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
+        /// <summary>
+        /// This click event is used for the assign the key and value to the user dictionary 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Definition_MouseLeftButtonClick(object sender, MouseButtonEventArgs e)
         {
-            if (callNumberTextBlock != null)
+            try
             {
-
-
-                if (!checkGenerateMethod)
+                if (callNumberTextBlock != null)
                 {
-                    TextBlock descriptTextBlock = (TextBlock)sender;
-                    checkDictionary.Add(callNumberTextBlock.Text, descriptTextBlock.Text);
-                    callNumberTextBlock.Background = Brushes.Gray;
-                    callNumberTextBlock.IsHitTestVisible = false;
-                    descriptTextBlock.Background = Brushes.Gray;
-                    descriptTextBlock.IsHitTestVisible = false;
 
-                    callNumberTextBlock = null;
+
+                    if (!checkGenerateMethod)
+                    {
+                        TextBlock descriptTextBlock = (TextBlock)sender;
+                        checkDictionary.Add(callNumberTextBlock.Text, descriptTextBlock.Text);
+                        callNumberTextBlock.Background = Brushes.Gray;
+                        callNumberTextBlock.IsHitTestVisible = false;
+                        descriptTextBlock.Background = Brushes.Gray;
+                        descriptTextBlock.IsHitTestVisible = false;
+
+                        callNumberTextBlock = null;
+                    }
+                    else
+                    {
+                        TextBlock descriptTextBlock = (TextBlock)sender;
+                        checkDictionary.Add(descriptTextBlock.Text, callNumberTextBlock.Text);
+                        callNumberTextBlock.Background = Brushes.Gray;
+                        callNumberTextBlock.IsHitTestVisible = false;
+                        descriptTextBlock.Background = Brushes.Gray;
+                        descriptTextBlock.IsHitTestVisible = false;
+
+                        callNumberTextBlock = null;
+                    }
                 }
                 else
                 {
-                    TextBlock descriptTextBlock = (TextBlock)sender;
-                    checkDictionary.Add(descriptTextBlock.Text, callNumberTextBlock.Text);
-                    callNumberTextBlock.Background = Brushes.Gray;
-                    callNumberTextBlock.IsHitTestVisible = false;
-                    descriptTextBlock.Background = Brushes.Gray;
-                    descriptTextBlock.IsHitTestVisible = false;
-
-                    callNumberTextBlock = null;
+                    MessageBox.Show("Select Call Number First");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Select Call Number First");
+                MessageBox.Show(ex.Message);
             }
+
         }
 
 
-
+        /// <summary>
+        /// This clcik event will check the answers in the user dictionay with the one from IdentifyingDefinitions
+        /// to give them their score.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAnswer_Click(object sender, RoutedEventArgs e)
         {
-            buttonAnswer.IsEnabled = false;
-            buttonClear.IsEnabled = false;
-            buttonGenerate.IsEnabled = true;
-
-            foreach (KeyValuePair<string, string> x in idd.GetDeweyDictionary())
+            try
             {
-                if (checkDictionary.TryGetValue(x.Key, out string area))
+                buttonAnswer.IsEnabled = false;
+                buttonClear.IsEnabled = false;
+                buttonGenerate.IsEnabled = true;
+
+                foreach (KeyValuePair<string, string> x in idd.GetDeweyDictionary())
                 {
-                    if (x.Value.Equals(area))
+                    if (checkDictionary.TryGetValue(x.Key, out string area))
                     {
-                        foreach (TextBlock tb in LeftStackPanel.Children)
+                        if (x.Value.Equals(area))
                         {
-                            if (tb.Text == x.Key || tb.Text == x.Value)
+                            foreach (TextBlock tb in LeftStackPanel.Children)
                             {
-                                tb.Background = Brushes.LimeGreen;
+                                if (tb.Text == x.Key || tb.Text == x.Value)
+                                {
+                                    tb.Background = Brushes.LimeGreen;
+                                }
                             }
+                            TempNumScore++;
                         }
-                        TempNumScore++;
                     }
                 }
+
+
+                bool status = false;
+                if (TempNumScore >= 3)
+                {
+                    status = true;
+                }
+                fillProgressBar(TempNumScore);
+                report.GenerateIA(status, TempNumScore);
             }
-
-
-            bool status = false;
-            if (TempNumScore >= 3)
+            catch (Exception ex)
             {
-                status = true;
+                MessageBox.Show(ex.Message);
             }
-            fillProgressBar(TempNumScore);
-            report.GenerateIA(status, TempNumScore);
+
         }
 
+        /// <summary>
+        /// This clcik event will generate the items for both panels
+        /// This method also changes from panel to panel for the user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonGenerate_Click(object sender, RoutedEventArgs e)
         {
-            LeftStackPanel.Children.Clear();
-            RightStackPanel.Children.Clear();
-            checkDictionary.Clear();
-            progressBarResults.Value = 0;
-            textBlockScore.Text = "";
-            buttonAnswer.IsEnabled = true;
-            buttonClear.IsEnabled = true;
-            buttonGenerate.IsEnabled = false;
-            TempNumScore = 0;
+            try
+            {
+                LeftStackPanel.Children.Clear();
+                RightStackPanel.Children.Clear();
+                checkDictionary.Clear();
+                progressBarResults.Value = 0;
+                textBlockScore.Text = "";
+                buttonAnswer.IsEnabled = true;
+                buttonClear.IsEnabled = true;
+                buttonGenerate.IsEnabled = false;
+                TempNumScore = 0;
 
-            if (checkGenerateMethod)
-            {
-                PopulateCallNumberTextBlock();
+                if (checkGenerateMethod)
+                {
+                    PopulateCallNumberTextBlock();
+                }
+                else
+                {
+                    PopulateDesciptionTextBlock();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                PopulateDesciptionTextBlock();
+                MessageBox.Show(ex.Message);
             }
+
 
         }
 
+        /// <summary>
+        /// This method will change the progress bar to visually show the user how much they got wrong
+        /// </summary>
+        /// <param name="score">Int of hw many the user got right.</param>
         public void fillProgressBar(int score)
         {
             switch (score)
@@ -226,6 +288,11 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
+        /// <summary>
+        /// This event will clear all items in the dictionary and then reset the display for the users.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClear_Click(object sender, RoutedEventArgs e)
         {
             checkDictionary.Clear();
