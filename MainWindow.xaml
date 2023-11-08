@@ -54,10 +54,8 @@
                     Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton
                     Height="50"
-                    Background="DarkGray"
                     Content="Finding Call Numbers"
                     FontSize="17"
-                    IsEnabled="False"
                     Style="{StaticResource MenuButtonTheme}" />
                 <RadioButton
                     Width="50"
@@ -70,21 +68,21 @@
             </StackPanel>
 
 
-            <ContentControl
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="10"
-                Content="{Binding CurrentView}" />
             <!--<ContentControl
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
+                Margin="10"
+                Content="{Binding CurrentView}" />-->
+            <ContentControl
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
                 Margin="10">
-                <view:IdentifyAreaView />
-            </ContentControl>-->
+                <view:FindingCallNumbersView />
+            </ContentControl>
 
 
 

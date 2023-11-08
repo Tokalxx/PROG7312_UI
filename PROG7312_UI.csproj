@@ -72,6 +72,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\FindingCallNumber.cs" />
+    <Compile Include="DataTree\CallNumberTree.cs" />
+    <Compile Include="DataTree\CallNumberNode.cs" />
     <Compile Include="DesignGenerate\IdentifyAreaDesign.cs" />
     <Compile Include="Core\Acheivements.cs" />
     <Compile Include="Core\CommandBase.cs" />
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\MenuButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MultipleChoiceTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,7 +167,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Fonts\" />
     <Folder Include="MVVM\Model\" />
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +190,9 @@
     <Resource Include="Images\Identify\10ProgressBar.PNG" />
     <Resource Include="Images\Identify\11Report.PNG" />
     <Resource Include="Images\Identify\12SwapedPanel.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TextFile\DDS.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

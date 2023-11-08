@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Themes/MenuButtonTheme.xaml" />
                 <ResourceDictionary Source="Themes/StandardTextBlockTheme.xaml" />
                 <ResourceDictionary Source="Themes/StandardTextBoxTheme.xaml" />
+                <ResourceDictionary Source="Themes/MultipleChoiceTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:RBViewModel}">
                 <view:ReplacingBooksView />
