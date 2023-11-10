@@ -10,6 +10,7 @@ namespace PROG7312_UI.Core
         private static readonly FindingCallNumber _instance = new FindingCallNumber();
         string filePath = "C:\\Users\\tokal\\Desktop\\ToBeBetter\\Learning Projects\\10. C# Tutorial Files\\3. ASP.NET\\PROG7312_UI\\TextFile\\DDS.txt";
         CallNumberTree cnt = new CallNumberTree(new CallNumberNode("0", ".", null));
+        int scoreCounter = 0;
         Random ran1 = new Random();
 
 
@@ -26,6 +27,16 @@ namespace PROG7312_UI.Core
         public CallNumberTree GetTree()
         {
             return cnt;
+        }
+
+        public void setScoreCounter(int score)
+        {
+            scoreCounter += score;
+        }
+
+        public int getScoreCounter()
+        {
+            return scoreCounter;
         }
 
 

@@ -3,7 +3,6 @@ using PROG7312_UI.DataTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace PROG7312_UI.MVVM.View
@@ -35,6 +34,7 @@ namespace PROG7312_UI.MVVM.View
         {
             string answer2 = answerLevel3.Parent.Num + " " + answerLevel3.Parent.Des;
             string answer3 = answerLevel3.Parent.Parent.Num + " " + answerLevel3.Parent.Parent.Des;
+            textBlockQuestion.Text = answerLevel3.Des;
 
             if (Level == 2)
             {
@@ -44,12 +44,15 @@ namespace PROG7312_UI.MVVM.View
                     {
                         if (x.Content.ToString() == answer3)
                         {
-                            MessageBox.Show("Correct");
+                            cnObject.setScoreCounter(2);
+                            textBlockScore.Text = cnObject.getScoreCounter().ToString();
+                            textBlockCorrectAnswer.Text = "";
                             generateCallNumbers();
                         }
                         else
                         {
-                            MessageBox.Show("Wrong");
+
+                            textBlockCorrectAnswer.Text = answer3;
                             Level = 1;
                             generateCallNumbers();
 
@@ -65,12 +68,15 @@ namespace PROG7312_UI.MVVM.View
                     {
                         if (x.Content.ToString() == answer2)
                         {
-                            MessageBox.Show("Correct");
+                            cnObject.setScoreCounter(2);
+                            textBlockScore.Text = cnObject.getScoreCounter().ToString();
+                            textBlockCorrectAnswer.Text = "";
                             generateCallNumbers();
                         }
                         else
                         {
-                            MessageBox.Show("Wrong");
+
+                            textBlockCorrectAnswer.Text = answer2;
                             Level = 1;
                             generateCallNumbers();
                         }
@@ -86,12 +92,22 @@ namespace PROG7312_UI.MVVM.View
             generateCallNumbers();
         }
 
+        public void getCallNumnberAnswer()
+        {
+            answerLevel3 = treeObject.Root.Children[ran.Next(0, 10)].Children[ran.Next(0, 10)].Children[ran.Next(0, 9)];
+
+            if (answerLevel3.Des.Contains(" [Unassigned]") || answerLevel3.Des.Contains(" (Optional number)"))
+            {
+                getCallNumnberAnswer();
+            }
+        }
+
 
         public void generateCallNumbers()
         {
             if (Level == 1)
             {
-                answerLevel3 = treeObject.Root.Children[ran.Next(0, 10)].Children[ran.Next(0, 1)].Children[ran.Next(0, 9)];
+                getCallNumnberAnswer();
                 textBlockRootQuestion.Text = answerLevel3.Num + " " + answerLevel3.Des;
 
                 List<CallNumberNode> tempList = cnObject.genQuestion1(answerLevel3);

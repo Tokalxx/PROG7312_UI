@@ -5,9 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:PROG7312_UI.MVVM.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DesignHeight="450"
+    d:DesignHeight="650"
     d:DesignWidth="800"
-    Background="Transparent"
+    Background="Pink"
     mc:Ignorable="d">
     <Grid>
 
@@ -20,6 +20,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
                 <RowDefinition Height="225" />
+                <RowDefinition Height="200" />
             </Grid.RowDefinitions>
             <TextBlock
                 x:Name="textBlockRootQuestion"
@@ -84,6 +85,48 @@
                         Margin="5"
                         Click="buttonGen_Click"
                         Content="Gen" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel
+                Grid.Row="2"
+                Height="220"
+                Margin="0,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,0,0"
+                        FontSize="35"
+                        Foreground="Black"
+                        Text="Previous Answer: " />
+                    <TextBlock
+                        x:Name="textBlockQuestion"
+                        Margin="5"
+                        FontSize="35"
+                        Foreground="Black" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,150,0"
+                        FontSize="35"
+                        Foreground="Black"
+                        Text="Score: " />
+                    <TextBlock
+                        x:Name="textBlockScore"
+                        Margin="5"
+                        FontSize="35"
+                        Foreground="Black" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="5"
+                        FontSize="35"
+                        Foreground="Black"
+                        Text="Correct Answer:"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        x:Name="textBlockCorrectAnswer"
+                        Margin="5"
+                        FontSize="35"
+                        Foreground="Black" />
                 </StackPanel>
             </StackPanel>
         </Grid>
