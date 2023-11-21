@@ -18,15 +18,29 @@ namespace PROG7312_UI.Core
             genTree(filePath, cnt);
         }
 
+        /// <summary>
+        /// Creates the instance for this class
+        /// </summary>
+        /// <returns></returns>
         public static FindingCallNumber GetInstance()
         {
             return _instance;
         }
 
+        /// <summary>
+        /// Returns the instance of this class
+        /// </summary>
+        /// <returns>CallNumberTree cnt</returns>
         public CallNumberTree GetTree()
         {
             return cnt;
         }
+
+        /// <summary>
+        /// Method generates the 1st question in the problem
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns>List<CallNumberNode> tempList</returns>
         public List<CallNumberNode> genQuestion1(CallNumberNode node)
         {
             int level1 = Convert.ToInt32(node.Parent.Parent.Num.Substring(0, 1));
@@ -49,6 +63,11 @@ namespace PROG7312_UI.Core
             return tempList;
         }
 
+        /// <summary>
+        /// Method generates the 2nd question in the problem
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public List<CallNumberNode> genQuestion2(CallNumberNode node)
         {
             int level1 = Convert.ToInt32(node.Parent.Parent.Num.Substring(0, 1));
@@ -73,7 +92,11 @@ namespace PROG7312_UI.Core
         }
 
 
-
+        /// <summary>
+        /// Method reads the whole text file and then generates the tree data structure
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="tr"></param>
         public static void genTree(string filePath, CallNumberTree tr)
         {
             using (StreamReader reader = new StreamReader(filePath))

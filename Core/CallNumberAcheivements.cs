@@ -21,21 +21,37 @@ namespace PROG7312_UI.Core
             callNumberScore.Add(new ScoreModel(5, "Score Gate 05", 35, "Locked"));
         }
 
+        /// <summary>
+        /// Returns this class instance
+        /// </summary>
+        /// <returns></returns>
         public static CallNumberAcheivements GetCallNumberAcheivements()
         {
             return _instance;
         }
 
+        /// <summary>
+        /// Sets the attempt number
+        /// </summary>
+        /// <param name="num"></param>
         public void SetAttemptNum(int num)
         {
             attemptNum += num;
         }
 
+        /// <summary>
+        /// Returns the attempt method
+        /// </summary>
+        /// <returns>attemptNum</returns>
         public int GetAttemptNum()
         {
             return attemptNum;
         }
 
+        /// <summary>
+        /// Sets the score 
+        /// </summary>
+        /// <param name="num"></param>
         public void SetScoreNum(int num)
         {
             scoreNum += num;
@@ -45,16 +61,28 @@ namespace PROG7312_UI.Core
             }
         }
 
+
+        /// <summary>
+        /// Returns the score
+        /// </summary>
+        /// <returns></returns>
         public int GetScoreNum()
         {
             return scoreNum;
         }
 
+        /// <summary>
+        /// Returns the call number score
+        /// </summary>
+        /// <returns>callNumberScore</returns>
         public ObservableCollection<ScoreModel> getScoreList()
         {
             return callNumberScore;
         }
 
+        /// <summary>
+        /// Checks to see the score that has been unlocked
+        /// </summary>
         public void checkScore()
         {
             foreach (ScoreModel x in callNumberScore)

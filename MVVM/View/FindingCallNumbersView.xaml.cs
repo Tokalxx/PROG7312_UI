@@ -32,6 +32,12 @@ namespace PROG7312_UI.MVVM.View
             listViewPointLadder.ItemsSource = cna.getScoreList();
         }
 
+        /// <summary>
+        /// Checks the user's answer to see is they got the answer right or wrong
+        /// Then generates the next level or a new question
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAnswer_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
@@ -107,6 +113,9 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
+        /// <summary>
+        /// Resets the highlighted radio button
+        /// </summary>
         private void resetAnswerHighlight()
         {
             foreach (RadioButton x in stackPanelMultiChoice.Children)
@@ -118,6 +127,12 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
+
+        /// <summary>
+        /// Generates the multiple choice questions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonGen_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             buttonAnswer.IsEnabled = true;
@@ -125,6 +140,9 @@ namespace PROG7312_UI.MVVM.View
             generateCallNumbers();
         }
 
+        /// <summary>
+        /// Generates a new question to be answered
+        /// </summary>
         public void getCallNumnberAnswer()
         {
             answerLevel3 = treeObject.Root.Children[ran.Next(0, 10)].Children[ran.Next(0, 10)].Children[ran.Next(0, 9)];
@@ -135,7 +153,9 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
-
+        /// <summary>
+        /// Generates the different possible answers based on the level the user is on.
+        /// </summary>
         public void generateCallNumbers()
         {
             if (Level == 1)
