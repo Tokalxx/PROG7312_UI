@@ -27,6 +27,16 @@ namespace PROG7312_UI.Core
             helpList.Add(new helpModel("Prorgess Bar", "The progress bar will should the score to the game.", "\\Images\\Identify\\10ProgressBar.PNG"));
             helpList.Add(new helpModel("Report", "All attempts are record as a reprot.", "\\Images\\Identify\\11Report.PNG"));
             helpList.Add(new helpModel("Swapped Panel", "The Call Numbers and Description are swaaped to be matched.", "\\Images\\Identify\\12SwapedPanel.PNG"));
+
+            helpList.Add(new helpModel("Base Call Number Game", "This is the Base screen for Finding Call Number.", "\\Images\\CallNum\\01.PNG"));
+            helpList.Add(new helpModel("Achievement Board", "The Point Board is to show you what achievements you still have not unlocked.", "\\Images\\CallNum\\01AchievementBoard .PNG"));
+            helpList.Add(new helpModel("Buttons", "The Answer Button will check your selected answer with the correct answer. The Gen Button will start the game for you.", "\\Images\\CallNum\\01Buttons.PNG"));
+            helpList.Add(new helpModel("Score & Attempts", "The Score shows how many points you have recived. Correct answer +2 and worng answer -1. Attempts shows how many questions you gone through.", "\\Images\\CallNum\\01ScoreAttempt.PNG"));
+            helpList.Add(new helpModel("Multiple Answers", "Here the possible answer are generated and can be selected.", "\\Images\\CallNum\\02MultiAnswers.PNG"));
+            helpList.Add(new helpModel("Question", "The question belongs to a possible Catagory. Find it in the multiple choice section.", "\\Images\\CallNum\\02Question.PNG"));
+            helpList.Add(new helpModel("Selected Answer", "The slected answer will be highlighted black.", "\\Images\\CallNum\\03HighlightedAnswer.PNG"));
+            helpList.Add(new helpModel("Incorrect Answer", "A prompt will show for every worng answer.", "\\Images\\CallNum\\05IncorrectAnswer.PNG"));
+            helpList.Add(new helpModel("Unlocked Achievements", "After getting a certain amount of points, an achievement will be unlocked.", "\\Images\\CallNum\\06UnlockedAchievement.PNG"));
         }
 
         /// <summary>

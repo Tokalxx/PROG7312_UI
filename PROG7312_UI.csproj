@@ -168,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Images\RewardPictures\" />
     <Folder Include="MVVM\Model\" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +194,25 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="TextFile\DDS.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CallNum\01.PNG" />
+    <Resource Include="Images\CallNum\01AchievementBoard .PNG" />
+    <Resource Include="Images\CallNum\01Buttons.PNG" />
+    <Resource Include="Images\CallNum\01ScoreAttempt.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CallNum\02MultiAnswers.PNG" />
+    <Resource Include="Images\CallNum\02Question.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CallNum\03HighlightedAnswer.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CallNum\05IncorrectAnswer.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CallNum\06UnlockedAchievement.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

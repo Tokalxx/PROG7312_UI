@@ -68,7 +68,7 @@ namespace PROG7312_UI.MVVM.View
             //uh.GetHelpList().Count - 1
             try
             {
-                if (imageNumber < 17)
+                if (imageNumber < 26)
                 {
                     imageNumber++;
                     buttonBack.IsEnabled = true;
@@ -88,7 +88,7 @@ namespace PROG7312_UI.MVVM.View
                     buttonNext.IsEnabled = false;
                 }
 
-                if (imageNumber == 17)
+                if (imageNumber == 26)
                 {
                     buttonNext.IsEnabled = false;
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 
 namespace PROG7312_UI.Core
 {
@@ -62,6 +63,7 @@ namespace PROG7312_UI.Core
                     x.ScorePoints <= scoreNum)
                 {
                     x.ScoreStatus = "Unlocked";
+                    MessageBox.Show($"Congradulation!!! You unlocked Achievement: {x.ScoreName}");
                 }
             }
         }
