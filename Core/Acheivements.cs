@@ -12,6 +12,59 @@ namespace PROG7312_UI.Core
         TimeSpan timeCheckAcheivement2 = TimeSpan.FromSeconds(15);
         TimeSpan timeCheckAcheivement3 = TimeSpan.FromSeconds(10);
         private ObservableCollection<AcheivementModels> acheivements = new ObservableCollection<AcheivementModels>();
+        string[] authorNames = {
+                    "Emily Anderson",
+                    "Benjamin Turner",
+                    "Jasmine Martinez",
+                    "Liam Campbell",
+                    "Ava Nguyen",
+                    "Jackson Cooper",
+                    "Isabella Wright",
+                    "Henry Wood",
+                    "Olivia Mitchell",
+                    "Samuel Walker",
+                    "Grace Thompson",
+                    "Ethan Collins",
+                    "Sophia Brooks",
+                    "Noah Parker",
+                    "Mia Hayes",
+                    "Alexander Simmons",
+                    "Ella Griffin",
+                    "Jack Evans",
+                    "Amelia Murphy",
+                    "Mason Morgan",
+                    "Harper Foster",
+                    "Aiden Cox",
+                    "Abigail Fisher",
+                    "Lucas Bennett",
+                    "Scarlett Reed",
+                    "Oliver Price",
+                    "Lily Ward",
+                    "Gabriel Ross",
+                    "Chloe Powell",
+                    "Wyatt Harrison",
+                    "Zoey Watson",
+                    "Logan Kelly",
+                    "Aurora Henderson",
+                    "Caleb Sullivan",
+                    "Penelope Russell",
+                    "Owen Perry",
+                    "Layla Palmer",
+                    "Lincoln Walsh",
+                    "Hazel Dean",
+                    "Julian Foster",
+                    "Stella Weaver",
+                    "Carter Tucker",
+                    "Riley Caldwell",
+                    "Aubrey Willis",
+                    "Gavin Bates",
+                    "Aria Newton",
+                    "Daniel Fletcher",
+                    "Peyton Fitzgerald",
+                    "Leo Holmes",
+                    "Madeline Griffin"
+                };
+
 
         private Acheivements()
         {
@@ -97,6 +150,10 @@ namespace PROG7312_UI.Core
 
         }
 
+        public string[] getAuthorNames()
+        {
+            return authorNames;
+        }
         /// <summary>
         /// Method checks through the list provided to see if the player has a time below 20 seconds
         /// </summary>

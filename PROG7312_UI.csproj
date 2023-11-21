@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Core\CallNumberAcheivements.cs" />
     <Compile Include="Core\FindingCallNumber.cs" />
     <Compile Include="DataTree\CallNumberTree.cs" />
     <Compile Include="DataTree\CallNumberNode.cs" />
@@ -167,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Images\RewardPictures\" />
     <Folder Include="MVVM\Model\" />
   </ItemGroup>
   <ItemGroup>

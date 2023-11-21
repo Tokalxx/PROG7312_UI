@@ -7,11 +7,13 @@ namespace PROG7312_UI.MVVM.View_Model
 
         public RelayCommand RBCommand { get; set; }
         public RelayCommand IACommand { get; set; }
+        public RelayCommand FCNCommand { get; set; }
         public RelayCommand HelpCommand { get; set; }
 
         public RBViewModel RBVM { get; set; }
         public IAViewModel IAVM { get; set; }
         public HelpViewModel HVM { get; set; }
+        public FCNViewModel FCNVM { get; set; }
 
 
         private object _currentView;
@@ -45,6 +47,7 @@ namespace PROG7312_UI.MVVM.View_Model
             RBVM = new RBViewModel();
             IAVM = new IAViewModel();
             HVM = new HelpViewModel();
+            FCNVM = new FCNViewModel();
 
 
             RBCommand = new RelayCommand(o =>
@@ -58,6 +61,10 @@ namespace PROG7312_UI.MVVM.View_Model
             IACommand = new RelayCommand(o =>
             {
                 CurrentView = IAVM;
+            });
+            FCNCommand = new RelayCommand(o =>
+            {
+                CurrentView = FCNVM;
             });
 
 

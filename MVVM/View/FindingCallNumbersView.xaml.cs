@@ -3,6 +3,7 @@ using PROG7312_UI.DataTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PROG7312_UI.MVVM.View
@@ -14,6 +15,7 @@ namespace PROG7312_UI.MVVM.View
     {
         List<RadioButton> multipleQuestion = new List<RadioButton>();
         FindingCallNumber cnObject = FindingCallNumber.GetInstance();
+        CallNumberAcheivements cna = CallNumberAcheivements.GetCallNumberAcheivements();
         CallNumberNode answerLevel3;
         CallNumberTree treeObject;
         static CallNumberNode answerValue;
@@ -27,11 +29,13 @@ namespace PROG7312_UI.MVVM.View
         {
             InitializeComponent();
             treeObject = cnObject.GetTree();
-
+            listViewPointLadder.ItemsSource = cna.getScoreList();
         }
 
         private void buttonAnswer_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+
+
             string answer2 = answerLevel3.Parent.Num + " " + answerLevel3.Parent.Des;
             string answer3 = answerLevel3.Parent.Parent.Num + " " + answerLevel3.Parent.Parent.Des;
             textBlockQuestion.Text = answerLevel3.Des;
@@ -44,16 +48,24 @@ namespace PROG7312_UI.MVVM.View
                     {
                         if (x.Content.ToString() == answer3)
                         {
-                            cnObject.setScoreCounter(2);
-                            textBlockScore.Text = cnObject.getScoreCounter().ToString();
+                            cna.SetScoreNum(2);
+                            textBlockScore.Text = cna.GetScoreNum().ToString();
+                            cna.checkScore();
                             textBlockCorrectAnswer.Text = "";
+                            resetAnswerHighlight();
                             generateCallNumbers();
                         }
                         else
                         {
 
                             textBlockCorrectAnswer.Text = answer3;
+                            cna.SetScoreNum(-1);
+                            textBlockScore.Text = cna.GetScoreNum().ToString();
+                            cna.SetAttemptNum(1);
+                            textBlockAttemot.Text = cna.GetAttemptNum().ToString();
                             Level = 1;
+                            MessageBox.Show($"{x.Content.ToString()}: is not correct.");
+                            resetAnswerHighlight();
                             generateCallNumbers();
 
                         }
@@ -68,16 +80,26 @@ namespace PROG7312_UI.MVVM.View
                     {
                         if (x.Content.ToString() == answer2)
                         {
-                            cnObject.setScoreCounter(2);
-                            textBlockScore.Text = cnObject.getScoreCounter().ToString();
+                            cna.SetScoreNum(2);
+                            cna.SetAttemptNum(1);
+                            textBlockScore.Text = cna.GetScoreNum().ToString();
+                            textBlockAttemot.Text = cna.GetAttemptNum().ToString();
+                            cna.checkScore();
                             textBlockCorrectAnswer.Text = "";
+                            resetAnswerHighlight();
                             generateCallNumbers();
                         }
                         else
                         {
 
                             textBlockCorrectAnswer.Text = answer2;
+                            cna.SetScoreNum(-1);
+                            textBlockScore.Text = cna.GetScoreNum().ToString();
+                            cna.SetAttemptNum(1);
+                            textBlockAttemot.Text = cna.GetAttemptNum().ToString();
                             Level = 1;
+                            MessageBox.Show($"{x.Content.ToString()}: is not correct.");
+                            resetAnswerHighlight();
                             generateCallNumbers();
                         }
                     }
@@ -85,10 +107,21 @@ namespace PROG7312_UI.MVVM.View
             }
         }
 
-
+        private void resetAnswerHighlight()
+        {
+            foreach (RadioButton x in stackPanelMultiChoice.Children)
+            {
+                if (x.IsChecked == true)
+                {
+                    x.IsChecked = false;
+                }
+            }
+        }
 
         private void buttonGen_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            buttonAnswer.IsEnabled = true;
+            buttonGen.IsEnabled = false;
             generateCallNumbers();
         }
 
@@ -108,7 +141,7 @@ namespace PROG7312_UI.MVVM.View
             if (Level == 1)
             {
                 getCallNumnberAnswer();
-                textBlockRootQuestion.Text = answerLevel3.Num + " " + answerLevel3.Des;
+                textBlockRootQuestion.Text = answerLevel3.Des;
 
                 List<CallNumberNode> tempList = cnObject.genQuestion1(answerLevel3);
 

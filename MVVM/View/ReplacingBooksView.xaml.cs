@@ -241,12 +241,11 @@ namespace PROG7312_UI.MVVM.View
         {
             string ranDeweyNum1 = random.Next(1000).ToString("000");
             string ranDeweyNum2 = random.Next(100).ToString("00");
-
-            string ranAuther = generateAuther();
-
-            return $"{ranDeweyNum1}.{ranDeweyNum2}{ranAuther}";
+            return $"{ranDeweyNum1}.{ranDeweyNum2} {generateAuther()}";
 
         }
+
+
 
         /// <summary>
         /// The method will return the random string for the items in the above method
@@ -254,17 +253,25 @@ namespace PROG7312_UI.MVVM.View
         /// <returns>A string that is the random string for the auther name</returns>
         public string generateAuther()
         {
-            string source = "ABCDEFGHIJKLMNOPRSTUVWXYZ";
-            char[] ranChar = new char[3];
+            string[] tempAuth = ach.getAuthorNames();
 
-            for (int i = 0; i < 3; i++)
+            Random random = new Random();
+
+            // Fisher-Yates shuffle
+            for (int i = tempAuth.Length - 1; i > 0; i--)
             {
-                int ranIndex = random.Next(0, source.Length);
-                ranChar[i] = source[ranIndex];
+                int j = random.Next(0, i + 1);
+                // Swap tempAuth[i] and tempAuth[j]
+                string temp = tempAuth[i];
+                tempAuth[i] = tempAuth[j];
+                tempAuth[j] = temp;
             }
 
-            return new string(ranChar);
+            // Now, tempAuth is shuffled, return a random author
+            return tempAuth[random.Next(0, tempAuth.Length)];
         }
+
+
 
         /// <summary>
         /// Method that will compare the strings and then with each other.
